@@ -1,0 +1,34 @@
+# Git and docker metadata
+.git
+.gitignore
+.dockerignore
+
+# Dependencies (npm install runs in the image)
+node_modules
+
+# Compose and host-only mise layout
+docker-compose.yml
+mise/compose/**
+mise/deployments/**
+mise/scripts/**
+mise/keys/**
+mise/env/**
+mise/containers/optimizer-tools/env/**
+mise/containers/optimizer-tools/Dockerfile
+
+# Editor, IDE, and local tooling
+.vscode
+.idea
+.cursor
+.agents
+.opencode
+
+# OS and logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+### RoRo — never send secrets into build context ###
+mise/**/*.env
+mise/**/*.key

@@ -1,0 +1,11 @@
+node_modules/
+
+# Legacy env path (pre-mise layout)
+/env/
+
+### RoRo / mise secrets ###
+/mise/**/*.env
+!/mise/**/*.env.example
+/mise/**/*.key
+!/mise/keys/.keep
+!/mise/**/env/.keep

@@ -1,0 +1,19 @@
+{
+  "sites": {
+    "ferrington": {
+      "canonicalHost": "ferringtonvineyards.com",
+      "gscProperty": "sc-domain:ferringtonvineyards.com",
+      "sitemapIndex": "https://ferringtonvineyards.com/sitemap-index.xml",
+      "zones": {
+        "ferringtonvineyards.com": "d3ebcf8c4e574bc60d0c6d0a6f3abd0c",
+        "ferrington.vin": "13e49ddd4ff6a66c6a788b5682eb592e"
+      }
+    },
+    "clickholes": {
+      "canonicalHost": "clickholes.com",
+      "zones": {
+        "clickholes.com": null
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+x-optimizer-tools-build: &optimizer-tools-build
+  context: ../../
+  dockerfile: mise/containers/optimizer-tools/Dockerfile
+
+x-tags: &tags
+  tags:
+    - handsomefencer/optimizer-tools:${CIRCLE_SHA1:-latest}
+    - handsomefencer/optimizer-tools:latest
+
+services:
+
+  roro:
+    container_name: roro
+    image: handsomefencer/roro
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../..:/artifact
+
+  optimizer-tools:
+    container_name: optimizer-tools
+    image: handsomefencer/optimizer-tools
+    build:
+      <<:
+        - *optimizer-tools-build
+        - *tags
+    env_file:
+      - ../containers/optimizer-tools/env/production.env

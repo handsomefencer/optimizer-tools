@@ -1,0 +1,69 @@
+version: 2.1
+
+executors:
+  machine:
+    machine:
+      docker_layer_caching: true
+      image: ubuntu-2404:2024.05.1
+    working_directory: ~/app
+
+jobs:
+  build:
+    executor: machine
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: docker compose build optimizer-tools
+      - run:
+          name: Smoke test CLI
+          command: docker run --rm handsomefencer/optimizer-tools --help
+
+  push:
+    executor: machine
+    steps:
+      - checkout
+      - run:
+          name: Decrypt CI credentials
+          command: |
+            docker compose run -e CI_KEY="${CI_KEY}" --rm roro \
+              roro generate:exposed ci
+      - run:
+          name: Log into Docker Hub
+          command: |
+            source mise/containers/optimizer-tools/env/ci.env
+            echo "${DOCKERHUB_TOKEN}" | docker login \
+              -u "${DOCKERHUB_USERNAME}" \
+              --password-stdin
+      - run:
+          name: Build production image
+          command: docker compose build optimizer-tools
+      - run:
+          name: Push images
+          command: |
+            docker image push handsomefencer/optimizer-tools:latest
+            docker image push handsomefencer/optimizer-tools:${CIRCLE_SHA1}
+
+workflows:
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+
+  build-push:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - production
+      - push:
+          filters:
+            branches:
+              only:
+                - production
+          requires:
+            - build
