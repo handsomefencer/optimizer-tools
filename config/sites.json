@@ -1,9 +1,17 @@
 {
   "sites": {
     "ferrington": {
-      "canonicalHost": "ferringtonvineyards.com",
-      "gscProperty": "sc-domain:ferringtonvineyards.com",
-      "sitemapIndex": "https://ferringtonvineyards.com/sitemap-index.xml",
+      "canonicalHost": "ferrington.vin",
+      "gscProperty": "sc-domain:ferrington.vin",
+      "gscLegacyProperties": ["sc-domain:ferringtonvineyards.com"],
+      "gscQueryFragments": [
+        "anderson valley",
+        "cool climate",
+        "ferrington",
+        "gewurztraminer",
+        "gewürztraminer"
+      ],
+      "sitemapIndex": "https://ferrington.vin/sitemap-index.xml",
       "zones": {
         "ferringtonvineyards.com": "d3ebcf8c4e574bc60d0c6d0a6f3abd0c",
         "ferrington.vin": "13e49ddd4ff6a66c6a788b5682eb592e"

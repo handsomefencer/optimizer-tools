@@ -24,3 +24,14 @@ export function canonicalOrigin(siteKey) {
   const { canonicalHost } = loadSite(siteKey);
   return `https://${canonicalHost}`;
 }
+
+/** @param {{ gscProperty?: string, gscProperties?: string[], gscLegacyProperties?: string[] }} site */
+export function gscPropertiesForSite(site) {
+  if (site.gscProperties?.length) return site.gscProperties;
+  const list = [];
+  if (site.gscProperty) list.push(site.gscProperty);
+  for (const p of site.gscLegacyProperties ?? []) {
+    if (!list.includes(p)) list.push(p);
+  }
+  return list;
+}

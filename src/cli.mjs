@@ -2,11 +2,13 @@
 import { run as runGsc } from './audit-gsc.mjs';
 import { run as runCloudflare } from './audit-cloudflare.mjs';
 import { run as runSeo } from './audit-seo.mjs';
+import { run as runCaptureGscPerformance } from './capture-gsc-performance.mjs';
 
 const HELP = `optimizer-tools — read-first SEO diagnostics (Compose)
 
 Usage:
   optimizer-tools audit:gsc [--site ferrington] [--json] [gsc flags…]
+  optimizer-tools capture:gsc-performance [--site ferrington] [--label name] [--out path] [--json]
   optimizer-tools audit:cloudflare [--site ferrington] [--json]
   optimizer-tools audit:seo --base <url> [--json] [seo flags…]
 
@@ -17,9 +19,10 @@ Secrets: mise/containers/optimizer-tools/env/production.env (decrypt from produc
 GSC OAuth bootstrap (gsc-auth) stays host-only.
 
 Subcommands:
-  audit:gsc           Google Search Console (sitemaps, P0 queries, inspection)
-  audit:cloudflare    Cloudflare DNS, SSL, redirect rules per site
-  audit:seo           Live site fetch (redirect chains, meta, canonical, JSON-LD)
+  audit:gsc                   Google Search Console (sitemaps, P0 queries, inspection)
+  capture:gsc-performance     GSC Performance baseline (queries + pages per property)
+  audit:cloudflare            Cloudflare DNS, SSL, redirect rules per site
+  audit:seo                   Live site fetch (redirect chains, meta, canonical, JSON-LD)
 
 Use <subcommand> --help for subcommand-specific options.
 `;
@@ -37,6 +40,9 @@ try {
   switch (command) {
     case 'audit:gsc':
       exitCode = await runGsc(args);
+      break;
+    case 'capture:gsc-performance':
+      exitCode = await runCaptureGscPerformance(args);
       break;
     case 'audit:cloudflare':
       exitCode = await runCloudflare(args);
