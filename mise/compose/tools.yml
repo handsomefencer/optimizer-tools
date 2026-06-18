@@ -7,10 +7,6 @@ x-tags: &tags
     - handsomefencer/optimizer-tools:${CIRCLE_SHA1:-latest}
     - handsomefencer/optimizer-tools:latest
 
-x-env-production: &env-production
-  path: ../containers/optimizer-tools/env/production.env
-  required: false
-
 services:
 
   roro:
@@ -28,5 +24,3 @@ services:
       <<:
         - *optimizer-tools-build
         - *tags
-    env_file:
-      - *env-production

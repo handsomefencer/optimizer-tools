@@ -5,7 +5,7 @@ export function getApiToken() {
   const token = process.env.CLOUDFLARE_API_TOKEN || process.env.CLOUDFLARE_TOKEN;
   if (!token) {
     throw new Error(
-      'Set CLOUDFLARE_API_TOKEN or CLOUDFLARE_TOKEN in mise/containers/optimizer-tools/env/production.env. Token needs Zone DNS Read, SSL Read, Dynamic URL Redirects Edit (+ DNS Edit for --ensure-www-dns).',
+      'Set CLOUDFLARE_API_TOKEN or CLOUDFLARE_TOKEN in clickholes/mise/containers/optimizer-tools/env/production.env. Token needs Zone DNS Read, SSL Read, Dynamic URL Redirects Edit (+ DNS Edit for --ensure-www-dns).',
     );
   }
   return token;

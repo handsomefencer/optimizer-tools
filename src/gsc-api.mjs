@@ -10,7 +10,7 @@ export function getGscConfig(propertyOverride) {
 
   if (!clientId || !clientSecret || !refreshToken) {
     throw new Error(
-      'Set GSC_CLIENT_ID, GSC_CLIENT_SECRET, and GSC_REFRESH_TOKEN in mise/containers/optimizer-tools/env/production.env. See docs/ferrington/todos/2026-06-09-ferrington-gsc-api-setup.md',
+      'Set GSC_CLIENT_ID, GSC_CLIENT_SECRET, and GSC_REFRESH_TOKEN in clickholes/mise/containers/optimizer-tools/env/production.env. See docs/ferrington/todos/2026-06-09-ferrington-gsc-api-setup.md',
     );
   }
 

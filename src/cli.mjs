@@ -12,11 +12,11 @@ Usage:
   optimizer-tools audit:cloudflare [--site ferrington] [--json]
   optimizer-tools audit:seo --base <url> [--json] [seo flags…]
 
-Run from the optimizer-tools repo root:
-  docker compose run --rm optimizer-tools <subcommand> [options]
+Run from the **clickholes** repo (secrets + sites.json mounted via Compose):
+  docker compose --profile tools run --rm optimizer-tools <subcommand> [options]
 
-Secrets: mise/containers/optimizer-tools/env/production.env (decrypt from production.env.enc via roro).
-GSC OAuth bootstrap (gsc-auth) stays host-only.
+Secrets: clickholes/mise/containers/optimizer-tools/env/production.env (RoRo).
+This repo builds the image only; do not add production.env here.
 
 Subcommands:
   audit:gsc                   Google Search Console (sitemaps, P0 queries, inspection)
